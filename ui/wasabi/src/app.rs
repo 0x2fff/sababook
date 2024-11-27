@@ -28,23 +28,25 @@ pub struct WasabiUI {
     input_mode: InputMode,
     window: Window,
     cursor: Cursor,
+    window_position: (i64, i64),
 }
 impl WasabiUI {
-    pub fn new(browser: Rc<RefCell<Browser>>) -> Self {
+    pub fn new(browser: Rc<RefCell<Browser>>, xy: (i64, i64), url: String) -> Self {
         Self {
             browser,
-            input_url: String::new(),
+            input_url: url,
             input_mode: InputMode::Normal,
             window: Window::new(
                 "saba".to_string(),
                 WHITE,
-                WINDOW_INIT_X_POS,
-                WINDOW_INIT_Y_POS,
+                xy.0,
+                xy.1,
                 WINDOW_WIDTH,
                 WINDOW_HEIGHT,
             )
             .unwrap(),
             cursor: Cursor::new(),
+            window_position: xy,
         }
     }
     fn setup_toolbar(&mut self) -> OsResult<()> {
@@ -91,6 +93,10 @@ impl WasabiUI {
         &mut self,
         handle_url: fn(String) -> Result<HttpResponse, Error>,
     ) -> Result<(), Error> {
+        if self.input_url != "".to_string() {
+            self.update_address_bar()?;
+            self.start_navigation(handle_url, self.input_url.clone())?;
+        }
         loop {
             self.handle_key_input(handle_url)?;
             self.handle_mouse_input(handle_url)?;
@@ -108,8 +114,8 @@ impl WasabiUI {
             self.cursor.flush();
             if button.l() || button.c() || button.r() {
                 let relative_pos = (
-                    position.x - WINDOW_INIT_X_POS,
-                    position.y - WINDOW_INIT_Y_POS,
+                    position.x - self.window_position.0,
+                    position.y - self.window_position.1,
                 );
                 if relative_pos.0 < 0
                     || relative_pos.0 > WINDOW_WIDTH
@@ -190,8 +196,8 @@ impl WasabiUI {
         }
         self.window.flush_area(
             Rect::new(
-                WINDOW_INIT_X_POS,
-                WINDOW_INIT_Y_POS + TITLE_BAR_HEIGHT,
+                self.window_position.0,
+                self.window_position.1 + TITLE_BAR_HEIGHT,
                 WINDOW_WIDTH,
                 TITLE_BAR_HEIGHT,
             )
@@ -211,8 +217,8 @@ impl WasabiUI {
         }
         self.window.flush_area(
             Rect::new(
-                WINDOW_INIT_X_POS,
-                WINDOW_INIT_Y_POS + TITLE_BAR_HEIGHT,
+                self.window_position.0,
+                self.window_position.1 + TITLE_BAR_HEIGHT,
                 WINDOW_WIDTH,
                 TITLE_BAR_HEIGHT,
             )

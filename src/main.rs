@@ -20,7 +20,11 @@ use ui_wasabi::app::WasabiUI;
 /// - A status code of 0 if the application starts successfully.
 fn main() -> u64 {
     let browser = Browser::new();
-    let ui = Rc::new(RefCell::new(WasabiUI::new(browser)));
+    let ui = Rc::new(RefCell::new(WasabiUI::new(
+        browser,
+        (0, 0),
+        "http://host.test:8000/test.html".to_string(),
+    )));
     match ui.borrow_mut().start(handle_url) {
         Ok(_) => {}
         Err(e) => {
