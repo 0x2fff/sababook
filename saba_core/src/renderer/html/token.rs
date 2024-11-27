@@ -18,7 +18,8 @@ pub enum HtmlToken {
 }
 
 /// Enum representing HTML parsing state.
-/// # Reference: https://html.spec.whatwg.org/multipage/parsing.html
+/// # References:
+/// - <https://html.spec.whatwg.org/multipage/parsing.html>
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum State {
     Data,

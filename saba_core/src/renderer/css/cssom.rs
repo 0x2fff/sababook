@@ -155,7 +155,8 @@ impl CssParser {
 }
 
 /// Struct representing a CSS style sheet.
-/// # Reference: https://drafts.csswg.org/cssom/#dom-cssstylesheet-cssrules
+/// # References:
+/// - <https://drafts.csswg.org/cssom/#dom-cssstylesheet-cssrules>
 #[derive(Debug, Clone, PartialEq)]
 pub struct StyleSheet {
     pub rules: Vec<QualifiedRule>,

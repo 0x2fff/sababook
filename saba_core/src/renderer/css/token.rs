@@ -2,7 +2,8 @@ use alloc::string::String;
 use alloc::vec::Vec;
 
 /// Enum representing CSS tokens.
-/// # Reference: https://www.w3.org/TR/css-syntax-3
+/// # References:
+/// - <https://www.w3.org/TR/css-syntax-3>
 #[derive(Debug, Clone, PartialEq)]
 pub enum CssToken {
     HashToken(String),
@@ -20,7 +21,7 @@ pub enum CssToken {
 }
 
 /// Struct representing a CSS tokenizer.
-/// # Reference: https://www.w3.org/TR/css-syntax-3
+/// # Reference: <https://www.w3.org/TR/css-syntax-3>
 #[derive(Debug, Clone, PartialEq)]
 pub struct CssTokenizer {
     pos: usize,

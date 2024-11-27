@@ -13,7 +13,8 @@ use core::cell::RefCell;
 use core::str::FromStr;
 
 /// Enum representing the insertion mode of the HTML parser.
-/// # Reference: https://html.spec.whatwg.org/multipage/parsing.html#the-insertion-mode
+/// # References:
+/// - <https://html.spec.whatwg.org/multipage/parsing.html#the-insertion-mode>
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum InsertionMode {
     Initial,

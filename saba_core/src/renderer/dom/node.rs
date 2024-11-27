@@ -10,7 +10,8 @@ use core::fmt::Formatter;
 use core::str::FromStr;
 
 /// Struct representing a window object.
-/// # Reference: https://html.spec.whatwg.org/multipage/nav-history-apis.html#window
+/// # References:
+/// - <https://html.spec.whatwg.org/multipage/nav-history-apis.html#window>
 #[derive(Debug, Clone)]
 pub struct Window {
     document: Rc<RefCell<Node>>,
