@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "bash ./run_on_wasabi.sh",
+			"type": "shell",
+			"command": "bash ./run_on_wasabi.sh",
+			"problemMatcher": [
+				"$rust-panic"
+			]
+		},
+		{
+			"label": "cargo test --manifest-path ./saba_core/Cargo.toml",
+			"type": "cargo",
+			"command": "test",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"args": [
+				"--manifest-path",
+				"./saba_core/Cargo.toml"
+			]
+		},
+		{
+			"label": "cargo doc --manifest-path ./saba_core/Cargo.toml",
+			"type": "cargo",
+			"command": "doc",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"args": [
+				"--manifest-path",
+				"./saba_core/Cargo.toml"
+			]
+		}
+	]
+}

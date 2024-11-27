@@ -1,0 +1,17 @@
+{
+    "cSpell.ignorePaths": [
+        "build/**",
+        "ch*/**"
+    ],
+    "cSpell.words": [
+        "cssom",
+        "DARKGRAY",
+        "lightgray",
+        "noli",
+        "nums",
+        "Peekable",
+        "rustc",
+        "splitn",
+        "stylesheet"
+    ]
+}
